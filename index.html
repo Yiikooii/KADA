@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #F5F5F5; 
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', sans-serif;
+        }
+        h1 {
+            text-align: center;
+            color: #483D8B;
+        }
+        .welcome-message {
+            text-align: center;
+            color: #6A5ACD;
+            margin-bottom: 40px;
+        }
+        .navbar {
+            background-color: #8FBC8F;
+            color: white;
+            padding: 10px;
+        }
+        .navbar button {
+            float: right;
+            background-color: #6A5ACD;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .search {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+        .search input[type="text"] {
+            width: 200px;
+            height: 20px;
+        }
+        .category {
+            border: 1px solid #BDB76B;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            background-color: #FFF8DC;
+        }
+        .category img {
+            width: 100px;
+            height: 100px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+        }
+        .login-popup {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .login-popup input {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h2>KaDa</h2>
+        <button onclick="document.getElementById('loginPopup').style.display='flex'">Login</button>
+    </div>
+    <div id="loginPopup" class="login-popup">
+        <input type="text" id="userEmail" name="userEmail" placeholder="Phone number or Email">
+        <input type="password" id="userPassword" name="userPassword" placeholder="Password">
+        <button onclick="document.getElementById('loginPopup').style.display='none'">Submit</button>
+    </div>
+    <div class="search">
+        <input type="text" placeholder="Search...">
+    </div>
+    <h1>Welcome to KaDa</h1>
+    <p class="welcome-message">We're delighted to have you here! Dive into our world of imagination and creativity.</p>
+    <div class="container">
+        <div class="category">
+            <img src="books.jpg" alt="Books">
+            <h2>Books</h2>
+            <p>Discover the joy of reading with our wide collection of books.</p>
+            <a href="books.html">Learn More</a>
+        </div>
+        <div class="category">
+            <img src="Audio.jpg" alt="Audio">
+            <h2>Audio</h2>
+            <p>Engage in auditory learning with our comprehensive audio resources.</p>
+            <a href="audio.html">Learn More</a>
+        </div>
+        <div class="category">
+            <img src="videos.jpg" alt="Videos">
+            <h2>Videos</h2>
+            <p>Explore a variety of topics through our educational videos.</p>
+            <a href="videos.html">Learn More</a>
+        </div>
+        <div class="category">
+            <img src="AI.jpg" alt="AI Creation">
+            <h2>AI Creation</h2>
+            <p>Create your own stories with the power of AI!</p>
+            <a href="ai.html">Learn More</a>
+        </div>
+    </div>
+</body>
+</html>
+

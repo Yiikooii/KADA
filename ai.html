@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        form {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+        form input, form select, form textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        form button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            document.querySelector('form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                var storyType = document.querySelector('select[name="story_type"]').value;
+                var storyStyle = document.querySelector('select[name="story_style"]').value;
+                var characterDescription = document.querySelector('textarea[name="character_description"]').value;
+                var keywords = document.querySelector('input[name="keywords"]').value;
+
+                var prompt = 'Story Type: ' + storyType + '\nStory Style: ' + storyStyle + '\nCharacter: ' + characterDescription + '\nKeywords: ' + keywords + '\n\nOnce upon a time, ';
+
+                fetch('http://localhost:5000/api/generate-story', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        'story_type': storyType,
+                        'story_style': storyStyle,
+                        'character_description': characterDescription,
+                        'keywords': keywords
+                    })
+                }).then(response => response.json())
+                .then(data => {
+                    alert(data.choices[0].text);
+                });
+            });
+        };
+    </script>
+</head>
+<body>
+    <form>
+        <h1>AI Story Creation</h1>
+        <select name="story_type">
+            <option value="" disabled selected>Choose story type</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="sci-fi">Science Fiction</option>
+            <option value="mystery">Mystery</option>
+            <option value="horror">Horror</option>
+            <option value="adventure">Adventure</option>
+            <option value="comedy">Comedy</option>
+            <option value="romance">Romance</option>
+            <option value="fairy_tale">Fairy Tale</option>
+            <option value="biography">Biography</option>
+            <option value="historical">Historical</option>
+            <option value="short_story">Short Story</option>
+        </select>
+        <select name="story_style">
+            <option value="" disabled selected>Choose story style</option>
+            <option value="funny">Funny</option>
+            <option value="serious">Serious</option>
+            <option value="sad">Sad</option>
+            <option value="exciting">Exciting</option>
+            <option value="poetic">Poetic</option>
+            <option value="epic">Epic</option>
+            <option value="happy">Happy</option>
+            <option value="inspirational">Inspirational</option>
+            <option value="realistic">Realistic</option>
+            <option value="fictional">Fictional</option>
+            <option value="romantic">Romantic</option>
+            <option value="magical">Magical</option>
+        </select>
+        <textarea name="character_description" placeholder="Describe the main character"></textarea>
+        <input type="text" name="keywords" placeholder="Enter keywords">
+        <button type="submit">Generate Story</button>
+    </form>
+</body>
+</html>
+
+
+
